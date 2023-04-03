@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +24,13 @@ public class PlayerController : MonoBehaviour
         float zValue = Input.GetAxis("Vertical") * _moveSpeed * Time.deltaTime;
 
         transform.Translate(xValue, 0f, zValue);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Hit"))
+        {
+            LevelManager.Instance.GameOver();
+        }
     }
 }
