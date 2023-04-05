@@ -6,10 +6,14 @@ public class Obstacles : MonoBehaviour
 {
    private void OnCollisionEnter(Collision other)
    {
-       if(other.gameObject.CompareTag("Player"))
+       if(gameObject.tag != "Hit")
+       {
+           if(other.gameObject.CompareTag("Player"))
        {
            Debug.Log("The Player ran into me...");
            gameObject.tag = "Hit";
+           LevelManager.Instance.UpdatePlayerHealthCount(1);
+       }
        }
    }
 }

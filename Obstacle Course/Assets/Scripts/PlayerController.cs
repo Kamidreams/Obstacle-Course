@@ -15,7 +15,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        //Movement();
+        if(LevelManager.Instance.StartGame())
+        {
+            Movement();
+        }
     }
 
     void Movement()
@@ -26,11 +30,11 @@ public class PlayerController : MonoBehaviour
         transform.Translate(xValue, 0f, zValue);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Hit"))
+        if(other.gameObject.CompareTag("End"))    
         {
-            LevelManager.Instance.GameOver();
+            LevelManager.Instance.Winner();
         }
     }
 }

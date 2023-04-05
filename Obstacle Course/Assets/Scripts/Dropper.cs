@@ -22,6 +22,14 @@ public class Dropper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(LevelManager.Instance.StartGame())
+        {
+            Spawn();
+        }
+    }
+
+    void Spawn()
+    {
         if(Time.time > _timeToWait)
         {
             _renderer.enabled = true;
