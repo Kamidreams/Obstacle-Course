@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static LevelManager Instance;
+
     [SerializeField] private float _moveSpeed = 10f;
 
     // Start is called before the first frame update

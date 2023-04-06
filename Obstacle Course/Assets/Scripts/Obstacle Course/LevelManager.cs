@@ -32,18 +32,20 @@ public class LevelManager : MonoBehaviour
 
     public bool StartGame()
     {
+        _isGameActive = true;
         return _isGameActive;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    
     }
 
     public void ReplayButtonPressed()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _isGameActive = true;
     }
 
     public void PlayButtonPressed()
@@ -57,13 +59,16 @@ public class LevelManager : MonoBehaviour
     {
         _playerHealth -= amount;
         HealthCountText.text = _playerHealth.ToString();
+        if(_playerHealth <= 0)
+        {
+            GameOver();
+        }
     }
 
     public void GameOver()
     {
         Time.timeScale = 0;
         GameOverPanel.SetActive(true);
-        GameManager.Instance.SetHealthCount(_playerHealth);
     }
 
     public void Winner()
